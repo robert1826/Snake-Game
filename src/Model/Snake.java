@@ -12,8 +12,23 @@ public class Snake {
 		body.addLast(startPos);
 	}
 	
-	public void move(){
+	/*
+	 * move the snake in one of 4 directions (up, down, ...etc)
+	 * up=0, right=1, down=2, left=3
+	 * 
+	 * if the move results in eating a mouse we increase 
+	 * the length of the snake
+	 */
+	public void move(int direction, boolean eatenMouse){
+		int[] dx = new int[]{0, 1, 0, -1};
+		int[] dy = new int[]{-1, 0, 1, 0};
 		
+		Point newPoint = body.getFirst().getLocation();
+		newPoint.translate(dx[direction], dy[direction]);
+		body.addFirst(newPoint);
+		
+		if(!eatenMouse)
+			body.pollLast();
 	}
 	
 	@Override

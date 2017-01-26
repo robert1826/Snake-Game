@@ -6,10 +6,12 @@ import java.util.LinkedList;
 
 public class Snake {
 	private Deque<Point> body;
+	private int lastDirection;
 	
 	public Snake(Point startPos){
 		body = new LinkedList<>();
 		body.addLast(startPos);
+		lastDirection = 1000;
 	}
 	
 	/*
@@ -18,17 +20,29 @@ public class Snake {
 	 * 
 	 * if the move results in eating a mouse we increase 
 	 * the length of the snake
+	 * 
+	 * note that : the snake can only crash with itself with any point other than
+	 * the second to head one
+	 * 
+	 * returns the new head after the snake moves
 	 */
-	public void move(int direction, boolean eatenMouse){
+	public Point move(int direction, boolean eatenMouse){
 		int[] dx = new int[]{0, 1, 0, -1};
 		int[] dy = new int[]{-1, 0, 1, 0};
 		
-		Point newPoint = body.getFirst().getLocation();
-		newPoint.translate(dx[direction], dy[direction]);
-		body.addFirst(newPoint);
+		Point newHead = body.getFirst().getLocation();;
 		
+		if(Math.abs(direction - lastDirection) == 2)
+			direction = lastDirection;
+		
+		newHead.translate(dx[direction], dy[direction]);
+		body.addFirst(newHead);
+			
 		if(!eatenMouse)
 			body.pollLast();
+		lastDirection = direction;
+		
+		return newHead;
 	}
 	
 	@Override

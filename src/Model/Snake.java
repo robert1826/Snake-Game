@@ -3,6 +3,7 @@ package Model;
 import java.awt.Point;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 public class Snake {
 	private Deque<Point> body;
@@ -25,12 +26,13 @@ public class Snake {
 	 * the second to head one
 	 * 
 	 * returns the new head after the snake moves
+	 * returns Null if the snake crashes with itself
 	 */
 	public Point move(int direction, boolean eatenMouse){
 		int[] dx = new int[]{0, 1, 0, -1};
 		int[] dy = new int[]{-1, 0, 1, 0};
 		
-		Point newHead = body.getFirst().getLocation();;
+		Point newHead = body.getFirst().getLocation();
 		
 		if(Math.abs(direction - lastDirection) == 2)
 			direction = lastDirection;
@@ -42,7 +44,14 @@ public class Snake {
 			body.pollLast();
 		lastDirection = direction;
 		
+		if(new TreeSet(body).contains(newHead))
+			return null;
+		
 		return newHead;
+	}
+	
+	public Point[] getBody(){
+		return body.toArray(new Point[body.size()]);
 	}
 	
 	@Override

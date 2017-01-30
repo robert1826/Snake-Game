@@ -18,7 +18,7 @@ public class CommandLineView {
 		this.snake = s;
 	}
 	
-	void updateView(){
+	public void updateView(){
 		int[][] grid = new int[width][height];
 		Point[] snakeBody = snake.getBody();
 		
@@ -29,16 +29,17 @@ public class CommandLineView {
 			for(int j = 0; j < height; j++){
 				switch (grid[i][j]) {
 				case SNAKE_VIEW_CODE:
-					System.out.println("#");
+					System.out.print("#");
 					break;
 				case MOUSE_VIEW_CODE:
-					System.out.println("^");
+					System.out.print("^");
 					break;
 				default:
-					System.out.println(".");
+					System.out.print(".");
 					break;
 				}
-			}			
+			}	
+			System.out.println();
 		}
 		
 		System.out.println();

@@ -2,6 +2,7 @@ package Model;
 
 import java.awt.Point;
 import java.util.Deque;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.TreeSet;
 
@@ -9,9 +10,9 @@ public class Snake {
 	private Deque<Point> body;
 	private int lastDirection;
 	
-	public Snake(Point startPos){
+	public Snake(int startx, int starty){
 		body = new LinkedList<>();
-		body.addLast(startPos);
+		body.addLast(new Point(startx, starty));
 		lastDirection = 1000;
 	}
 	
@@ -44,7 +45,7 @@ public class Snake {
 			body.pollLast();
 		lastDirection = direction;
 		
-		if(new TreeSet(body).contains(newHead))
+		if(new HashSet(body).contains(newHead))
 			return null;
 		
 		return newHead;

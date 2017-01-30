@@ -30,8 +30,8 @@ public class Snake {
 	 * returns Null if the snake crashes with itself
 	 */
 	public Point move(int direction, boolean eatenMouse){
-		int[] dx = new int[]{0, 1, 0, -1};
-		int[] dy = new int[]{-1, 0, 1, 0};
+		int[] dx = new int[]{-1, 0, 1, 0};
+		int[] dy = new int[]{0, 1, 0, -1};
 		
 		Point newHead = body.getFirst().getLocation();
 		

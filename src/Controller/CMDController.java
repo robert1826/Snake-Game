@@ -1,8 +1,6 @@
 package Controller;
 
 import java.awt.Point;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
 

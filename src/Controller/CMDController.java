@@ -1,6 +1,5 @@
 package Controller;
 
-import java.awt.Point;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -26,7 +25,6 @@ public class CMDController {
 	
 	void gameLoop(){
 		while(true){
-			Point mouse = getRandomMousePos();
 			view.updateView();
 			int direction = getInput();
 			snake.move(direction, true);
@@ -41,11 +39,5 @@ public class CMDController {
 		}
 		
 		return "urdl".indexOf(s);
-	}
-
-	Point getRandomMousePos() {
-		int x = random.nextInt(grid.getWidth() + 1);
-		int y = random.nextInt(grid.getHeight() + 1);
-		return new Point(x, y);
 	}
 }

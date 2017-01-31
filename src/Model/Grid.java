@@ -18,6 +18,7 @@ public class Grid {
 		this.width = w;
 		this.height = h;
 		random = new Random();
+		mousePos = generateRandomMousePos();
 	}
 
 	public int getWidth() {
@@ -28,9 +29,9 @@ public class Grid {
 		return height;
 	}
 	
-	Point getRandomMousePos() {
-		int x = random.nextInt(getWidth() + 1);
-		int y = random.nextInt(getHeight() + 1);
+	Point generateRandomMousePos() {
+		int x = random.nextInt(getWidth());
+		int y = random.nextInt(getHeight());
 		return new Point(x, y);
 	}
 	
@@ -40,11 +41,17 @@ public class Grid {
 		
 		for(Point p : snakeBody)
 			grid[p.x][p.y] = SNAKE_VIEW_CODE;
-		
-		if(mousePos == null)
-			mousePos = getRandomMousePos();
+
 		grid[mousePos.x][mousePos.y] = MOUSE_VIEW_CODE;
 		
 		return grid;
+	}
+	
+	public Point getMousePos(){
+		return mousePos.getLocation();
+	}
+	
+	public void generateNewMouse(){
+		mousePos = generateRandomMousePos();
 	}
 }

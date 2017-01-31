@@ -28,7 +28,7 @@ public class Snake {
 	 * returns the new head after the snake moves
 	 * returns Null if the snake crashes with itself
 	 */
-	public Point move(int direction, boolean eatenMouse){
+	public Point move(int direction){
 		int[] dx = new int[]{-1, 0, 1, 0};
 		int[] dy = new int[]{0, 1, 0, -1};
 		
@@ -38,16 +38,18 @@ public class Snake {
 			direction = lastDirection;
 		
 		newHead.translate(dx[direction], dy[direction]);
-		body.addFirst(newHead);
 			
-		if(!eatenMouse)
-			body.pollLast();
 		lastDirection = direction;
 		
 		if(new HashSet(body).contains(newHead))
 			return null;
 		
+		body.addFirst(newHead);
 		return newHead;
+	}
+	
+	public void removeExtention(){
+		body.pollLast();
 	}
 	
 	public Point[] getBody(){

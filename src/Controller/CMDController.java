@@ -1,5 +1,6 @@
 package Controller;
 
+import java.awt.Point;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,7 +28,20 @@ public class CMDController {
 		while(true){
 			view.updateView();
 			int direction = getInput();
-			snake.move(direction, true);
+			
+			Point newHead = snake.move(direction);
+			
+			if(newHead == null){
+				// snake has crashed into itself
+				System.out.println("Snake Has Crashed Into Itself\nGame Over:(");
+				break;
+			}
+			
+			if(!newHead.equals(grid.getMousePos())){
+				snake.removeExtention();
+			}else{
+				grid.generateNewMouse();
+			}
 		}
 	}
 

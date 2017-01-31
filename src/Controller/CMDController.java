@@ -4,21 +4,21 @@ import java.awt.Point;
 import java.util.Random;
 import java.util.Scanner;
 
+import Model.Grid;
 import Model.Snake;
 import View.CommandLineView;
 
 public class CMDController {
 	Snake snake;
 	CommandLineView view;
-	int gridWidth, gridHeight;
 	Random random;
 	Scanner sc;
+	Grid grid;
 	
 	public CMDController(int w, int h) {
 		snake = new Snake(0, 0);
-		gridWidth = w;
-		gridHeight = h;
-		view = new CommandLineView(gridWidth, gridHeight, snake);
+		grid = new Grid(snake, w, h);
+		view = new CommandLineView(grid);
 		random = new Random();
 		sc = new Scanner(System.in);
 		gameLoop();
@@ -26,6 +26,7 @@ public class CMDController {
 	
 	void gameLoop(){
 		while(true){
+			Point mouse = getRandomMousePos();
 			view.updateView();
 			int direction = getInput();
 			snake.move(direction, true);
@@ -42,9 +43,9 @@ public class CMDController {
 		return "urdl".indexOf(s);
 	}
 
-	Point getMousePos() {
-		int x = random.nextInt(gridWidth + 1);
-		int y = random.nextInt(gridHeight + 1);
+	Point getRandomMousePos() {
+		int x = random.nextInt(grid.getWidth() + 1);
+		int y = random.nextInt(grid.getHeight() + 1);
 		return new Point(x, y);
 	}
 }

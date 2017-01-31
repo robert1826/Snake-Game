@@ -12,8 +12,8 @@ public class CommandLineView {
 	public void updateView(){
 		int[][] g = grid.getGrid();
 			
-		for(int j = 0; j < grid.getHeight(); j++){
-			for(int i = 0; i < grid.getWidth(); i++){
+		for(int i = 0; i < grid.getHeight(); i++){
+			for(int j = 0; j < grid.getWidth(); j++){
 				switch (g[i][j]) {
 				case Grid.SNAKE_VIEW_CODE:
 					System.out.print("#");

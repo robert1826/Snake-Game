@@ -24,14 +24,23 @@ public class CMDController {
 	public void gameLoop(){
 		while(true){
 			view.updateView(grid);
-			int directionCode = getInput();
+			moveSnake(getInput());
 			
-			Direction dir = DirectionFactory.getDirection(directionCode);
-			Point newHead = grid.getSnake().move(dir);
-			
-			if ( newHead.equals(grid.getMousePos()) )
+			if ( grid.getSnake().getBody().equals(grid.getMousePos()) )
 				grid.generateNewMouse();
 		}
+	}
+
+	private void moveSnake(int directionCode) {
+		Direction dir = DirectionFactory.getDirection(directionCode);
+
+		Point newHead = grid.getSnake().getBody();
+		newHead.translate(dir.getDx(), dir.getDy());
+
+		newHead.x = (newHead.x + grid.getHeight()) % grid.getHeight();
+		newHead.y = (newHead.y + grid.getWidth()) % grid.getWidth();
+
+		grid.getSnake().setHeadPos(newHead);
 	}
 
 	private int getInput() {

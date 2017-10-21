@@ -14,10 +14,16 @@ public class Snake {
 		body.addFirst(new Point(startx, starty));
 	}
 
-	public synchronized void moveHeadToPos(Point newHead, boolean removeTail) {
+	// returns true if the snake crashes into itself o.w returns false
+	public synchronized boolean moveHeadToPos(Point newHead, boolean removeTail) {
+		if (body.contains(newHead))
+			return true;
+
 		body.addFirst(newHead.getLocation());
 		if (removeTail)
 			body.removeLast();
+
+		return false;
 	}
 
 	public synchronized List<Point> getBody(){

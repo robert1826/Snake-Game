@@ -2,6 +2,7 @@ package view;
 
 import java.util.Scanner;
 
+import miscellaneous.GlobalGameConstants;
 import miscellaneous.GridConstants;
 import model.Grid;
 import controller.Controller;
@@ -52,6 +53,12 @@ public class CommandLineView extends View {
 		if (con != null)
 			con.moveSnake(getInput());
 		else System.err.println("No controller found to process input");
+	}
+
+	@Override
+	public void endGame() {
+		System.out.println(GlobalGameConstants.GAME_EXITING_MSG);
+		super.endGame();
 	}
 
 	private int getInput() {

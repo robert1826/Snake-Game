@@ -9,9 +9,11 @@ import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import miscellaneous.DirectionConstants;
+import miscellaneous.GlobalGameConstants;
 import miscellaneous.GridConstants;
 import model.Grid;
 import controller.Controller;
@@ -98,6 +100,12 @@ public class GUIView extends View implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent e) {}
+
+	@Override
+	public void endGame() {
+		JOptionPane.showMessageDialog(null, GlobalGameConstants.GAME_EXITING_MSG);
+		super.endGame();
+	}
 
 	private void createAndAddLabels() {
 		for (int i = 0; i < grid.getHeight(); i++) {

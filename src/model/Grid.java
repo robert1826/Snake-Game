@@ -30,8 +30,8 @@ public class Grid {
 		return snake.getBody();
 	}
 
-	public void setSnakeHeadPos(Point newHead, boolean removeTail) {
-		snake.moveHeadToPos(newHead, removeTail);
+	public boolean setSnakeHeadPos(Point newHead, boolean removeTail) {
+		return snake.moveHeadToPos(newHead, removeTail);
 	}
 
 	public int[][] getGrid(){

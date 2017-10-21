@@ -12,4 +12,8 @@ public abstract class View {
 
 	public abstract void updateView();
 	public abstract void setController(Controller controller);
+
+	public void endGame() {
+		System.exit(0);
+	}
 }

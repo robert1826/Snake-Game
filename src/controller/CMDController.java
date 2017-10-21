@@ -25,9 +25,6 @@ public class CMDController {
 		while(true){
 			view.updateView(grid);
 			moveSnake(getInput());
-			
-			if ( grid.getSnake().getBody().equals(grid.getMousePos()) )
-				grid.generateNewMouse();
 		}
 	}
 
@@ -41,6 +38,9 @@ public class CMDController {
 		newHead.y = (newHead.y + grid.getWidth()) % grid.getWidth();
 
 		grid.getSnake().setHeadPos(newHead);
+
+		if ( grid.getSnake().getBody().equals(grid.getMousePos()) )
+			grid.generateNewMouse();
 	}
 
 	private int getInput() {

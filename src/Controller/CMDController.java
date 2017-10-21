@@ -31,17 +31,8 @@ public class CMDController {
 			
 			Point newHead = snake.move(direction);
 			
-			if(newHead == null){
-				// snake has crashed into itself
-				System.out.println("Snake Has Crashed Into Itself\nGame Over:(");
-				break;
-			}
-			
-			if(!newHead.equals(grid.getMousePos())){
-				snake.removeExtention();
-			}else{
+			if ( newHead.equals(grid.getMousePos()) )
 				grid.generateNewMouse();
-			}
 		}
 	}
 

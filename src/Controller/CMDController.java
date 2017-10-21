@@ -9,11 +9,11 @@ import Model.Snake;
 import View.CommandLineView;
 
 public class CMDController {
-	Snake snake;
-	CommandLineView view;
-	Random random;
-	Scanner sc;
-	Grid grid;
+	private Snake snake;
+	private CommandLineView view;
+	private Random random;
+	private Scanner sc;
+	private Grid grid;
 	
 	public CMDController(int w, int h) {
 		snake = new Snake(0, 0);

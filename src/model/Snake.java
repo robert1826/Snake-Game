@@ -1,25 +1,29 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Snake {
-	private Point body;
-	
+	private final Deque<Point> body;
+
 	public Snake(int startx, int starty){
-		body = new Point(startx, starty);
-	}
-	
-	public void setHeadPos(Point newHead) {
-		this.body = newHead.getLocation();
-	}
-	
-	public Point getBody(){
-		return body.getLocation();
-	}
-	
-	@Override
-	public String toString() {
-		return String.format("Snake@(%d, %d)", body.x, body.y);
+		body = new LinkedList<Point>();
+		body.addFirst(new Point(startx, starty));
 	}
 
+	public synchronized void moveHeadToPos(Point newHead, boolean removeTail) {
+		body.addFirst(newHead.getLocation());
+		if (removeTail)
+			body.removeLast();
+	}
+
+	public synchronized List<Point> getBody(){
+		ArrayList<Point> res = new ArrayList<Point>(body.size());
+		for (Point p : body)
+			res.add(p.getLocation());
+		return res;
+	}
 }

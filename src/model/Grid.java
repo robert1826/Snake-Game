@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.List;
 
 import miscellaneous.GridConstants;
 
@@ -25,19 +26,20 @@ public class Grid {
 		return height;
 	}
 
-	public Point getSnakeBody() {
+	public List<Point> getSnakeBody() {
 		return snake.getBody();
 	}
 
-	public void setSnakeHeadPos(Point newHead) {
-		snake.setHeadPos(newHead);
+	public void setSnakeHeadPos(Point newHead, boolean removeTail) {
+		snake.moveHeadToPos(newHead, removeTail);
 	}
 
 	public int[][] getGrid(){
 		int[][] grid = new int[width][height];
-		Point snakeBody = snake.getBody();
+		List<Point> snakeBody = snake.getBody();
 
-		grid[snakeBody.x][snakeBody.y] = GridConstants.SNAKE_VIEW_CODE;
+		for (Point p : snakeBody)
+			grid[p.x][p.y] = GridConstants.SNAKE_VIEW_CODE;
 
 		Point mousePos = getMousePos();
 		grid[mousePos.x][mousePos.y] = GridConstants.MOUSE_VIEW_CODE;
@@ -52,6 +54,6 @@ public class Grid {
 	public void generateNewMouse(){
 		do {
 			mouse.renewPos(width, height);
-		} while (snake.getBody().equals(mouse.getPos()));
+		} while (snake.getBody().contains(mouse.getPos()));
 	}
 }

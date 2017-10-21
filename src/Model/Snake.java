@@ -2,6 +2,9 @@ package Model;
 
 import java.awt.Point;
 
+import direction.Direction;
+import direction.DirectionFactory;
+
 public class Snake {
 	private Point body;
 	
@@ -10,11 +13,8 @@ public class Snake {
 	}
 	
 	public Point move(int direction){
-		int[] dx = new int[]{-1, 0, 1, 0};
-		int[] dy = new int[]{0, 1, 0, -1};
-		
-		body.translate(dx[direction], dy[direction]);
-		
+		Direction dir = DirectionFactory.getDirection(direction);
+		body.translate(dir.getDx(), dir.getDy());
 		return getBody();
 	}
 	

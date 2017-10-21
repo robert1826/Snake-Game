@@ -1,24 +1,20 @@
 package View;
 
+import miscellaneous.GridConstants;
 import Model.Grid;
 
 public class CommandLineView {		
-	private Grid grid;
-	
-	public CommandLineView(Grid g) {
-		this.grid = g;
-	}
-	
-	public void updateView(){
+
+	public void updateView(Grid grid){
 		int[][] g = grid.getGrid();
 			
 		for(int i = 0; i < grid.getHeight(); i++){
 			for(int j = 0; j < grid.getWidth(); j++){
 				switch (g[i][j]) {
-				case Grid.SNAKE_VIEW_CODE:
+				case GridConstants.SNAKE_VIEW_CODE:
 					System.out.print("#");
 					break;
-				case Grid.MOUSE_VIEW_CODE:
+				case GridConstants.MOUSE_VIEW_CODE:
 					System.out.print("^");
 					break;
 				default:

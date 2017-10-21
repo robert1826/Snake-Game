@@ -1,10 +1,12 @@
-package Controller;
+package controller;
 
 import java.awt.Point;
 import java.util.Scanner;
 
-import Model.Grid;
-import View.CommandLineView;
+import view.CommandLineView;
+
+import model.Grid;
+
 import direction.Direction;
 import direction.DirectionFactory;
 

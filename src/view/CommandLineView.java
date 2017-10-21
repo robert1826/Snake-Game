@@ -1,7 +1,7 @@
-package View;
+package view;
 
 import miscellaneous.GridConstants;
-import Model.Grid;
+import model.Grid;
 
 public class CommandLineView {		
 

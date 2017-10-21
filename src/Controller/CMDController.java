@@ -13,13 +13,13 @@ public class CMDController {
 	
 	public CMDController(int w, int h) {
 		grid = new Grid(w, h);
-		view = new CommandLineView(grid);
+		view = new CommandLineView();
 		sc = new Scanner(System.in);
 	}
 	
 	public void gameLoop(){
 		while(true){
-			view.updateView();
+			view.updateView(grid);
 			int direction = getInput();
 			
 			Point newHead = grid.getSnake().move(direction);

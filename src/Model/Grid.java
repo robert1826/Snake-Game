@@ -11,8 +11,8 @@ public class Grid {
 	private Snake snake;
 	private int width, height;
 	
-	public Grid(Snake s, int w, int h){
-		snake = s;
+	public Grid(int w, int h){
+		snake = new Snake(0, 0);
 		width = w;
 		height = h;
 		mouse = new Mouse();
@@ -37,6 +37,10 @@ public class Grid {
 		grid[mousePos.x][mousePos.y] = MOUSE_VIEW_CODE;
 		
 		return grid;
+	}
+
+	public Snake getSnake() {
+		return this.snake;
 	}
 	
 	public Point getMousePos(){

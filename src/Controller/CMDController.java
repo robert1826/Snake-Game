@@ -4,18 +4,15 @@ import java.awt.Point;
 import java.util.Scanner;
 
 import Model.Grid;
-import Model.Snake;
 import View.CommandLineView;
 
 public class CMDController {
-	private Snake snake;
 	private CommandLineView view;
 	private Scanner sc;
 	private Grid grid;
 	
 	public CMDController(int w, int h) {
-		snake = new Snake(0, 0);
-		grid = new Grid(snake, w, h);
+		grid = new Grid(w, h);
 		view = new CommandLineView(grid);
 		sc = new Scanner(System.in);
 	}
@@ -25,7 +22,7 @@ public class CMDController {
 			view.updateView();
 			int direction = getInput();
 			
-			Point newHead = snake.move(direction);
+			Point newHead = grid.getSnake().move(direction);
 			
 			if ( newHead.equals(grid.getMousePos()) )
 				grid.generateNewMouse();

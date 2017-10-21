@@ -37,11 +37,10 @@ public class Grid {
 	
 	public int[][] getGrid(){
 		int[][] grid = new int[width][height];
-		Point[] snakeBody = snake.getBody();
+		Point snakeBody = snake.getBody();
+	
+		grid[snakeBody.x][snakeBody.y] = SNAKE_VIEW_CODE;
 		
-		for(Point p : snakeBody)
-			grid[p.x][p.y] = SNAKE_VIEW_CODE;
-
 		grid[mousePos.x][mousePos.y] = MOUSE_VIEW_CODE;
 		
 		return grid;

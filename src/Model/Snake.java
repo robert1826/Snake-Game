@@ -1,67 +1,29 @@
 package Model;
 
 import java.awt.Point;
-import java.util.Deque;
-import java.util.HashSet;
-import java.util.LinkedList;
 
 public class Snake {
-	private Deque<Point> body;
-	private int lastDirection;
+	private Point body;
 	
 	public Snake(int startx, int starty){
-		body = new LinkedList<>();
-		body.addLast(new Point(startx, starty));
-		lastDirection = 1000;
+		body = new Point(startx, starty);
 	}
 	
-	/*
-	 * move the snake in one of 4 directions (up, down, ...etc)
-	 * up=0, right=1, down=2, left=3
-	 * 
-	 * if the move results in eating a mouse we increase 
-	 * the length of the snake
-	 * 
-	 * note that : the snake can only crash with itself with any point other than
-	 * the second to head one
-	 * 
-	 * returns the new head after the snake moves
-	 * returns Null if the snake crashes with itself
-	 */
 	public Point move(int direction){
 		int[] dx = new int[]{-1, 0, 1, 0};
 		int[] dy = new int[]{0, 1, 0, -1};
 		
-		Point newHead = body.getFirst().getLocation();
+		body.translate(dx[direction], dy[direction]);
 		
-		if(Math.abs(direction - lastDirection) == 2)
-			direction = lastDirection;
-		
-		newHead.translate(dx[direction], dy[direction]);
-			
-		lastDirection = direction;
-		
-		if(new HashSet(body).contains(newHead))
-			return null;
-		
-		body.addFirst(newHead);
-		return newHead;
+		return getBody();
 	}
 	
-	public void removeExtention(){
-		body.pollLast();
-	}
-	
-	public Point[] getBody(){
-		return body.toArray(new Point[body.size()]);
+	public Point getBody(){
+		return body.getLocation();
 	}
 	
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		for(Point p : body){
-			builder.append("(" + p.getX() + ", " + p.getY() + "), ");
-		}
-		return "[" + builder.substring(0, builder.length() - 2) +"]";
+		return String.format("(%d, %d)", body.x, body.y);
 	}
 }

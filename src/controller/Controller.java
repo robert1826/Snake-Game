@@ -4,16 +4,18 @@ import java.awt.Point;
 
 import model.Grid;
 import view.CommandLineView;
+import view.View;
 import direction.Direction;
 import direction.DirectionFactory;
 
 public class Controller {
-	private CommandLineView view;
+	private View view;
 	private Grid grid;
 	
-	public Controller(int w, int h) {
+	public Controller(int w, int h, View v) {
 		grid = new Grid(w, h);
-		view = new CommandLineView(this);
+		view = v;
+		view.setController(this);
 	}
 	
 	public void gameLoop(){

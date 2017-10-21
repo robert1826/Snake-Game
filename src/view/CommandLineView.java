@@ -6,19 +6,22 @@ import miscellaneous.GridConstants;
 import model.Grid;
 import controller.Controller;
 
-public class CommandLineView {		
+public class CommandLineView implements View {
 
-	private Scanner sc;
+	private final Scanner sc;
 	private Controller con;
 
-	public CommandLineView(Controller controller) {
+	public CommandLineView() {
 		sc = new Scanner(System.in);
+	}
+
+	public void setController(Controller controller) {
 		con = controller;
 	}
 
 	public void updateView(Grid grid){
 		int[][] g = grid.getGrid();
-			
+
 		for(int i = 0; i < grid.getHeight(); i++){
 			for(int j = 0; j < grid.getWidth(); j++){
 				switch (g[i][j]) {
@@ -32,12 +35,15 @@ public class CommandLineView {
 					System.out.print(".");
 					break;
 				}
-			}	
+			}
 			System.out.println();
 		}
-		
+
 		System.out.println();
-		con.moveSnake(getInput());
+
+		if (con != null)
+			con.moveSnake(getInput());
+		else System.err.println("No controller found to process input");
 	}
 
 	private int getInput() {

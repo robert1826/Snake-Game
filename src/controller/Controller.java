@@ -26,15 +26,17 @@ public class Controller {
 	public void moveSnake(int directionCode) {
 		Direction dir = DirectionFactory.getDirection(directionCode);
 
-		Point newHead = grid.getSnakeBody();
+		Point newHead = grid.getSnakeBody().get(0);
 		newHead.translate(dir.getDx(), dir.getDy());
 
 		newHead.x = (newHead.x + grid.getHeight()) % grid.getHeight();
 		newHead.y = (newHead.y + grid.getWidth()) % grid.getWidth();
 
-		grid.setSnakeHeadPos(newHead);
 
-		if ( grid.getSnakeBody().equals(grid.getMousePos()) )
+		if ( newHead.equals(grid.getMousePos()) ){
+			grid.setSnakeHeadPos(newHead, false);
 			grid.generateNewMouse();
+
+		}else grid.setSnakeHeadPos(newHead, true);
 	}
 }

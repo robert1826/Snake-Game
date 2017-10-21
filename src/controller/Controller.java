@@ -3,24 +3,23 @@ package controller;
 import java.awt.Point;
 
 import model.Grid;
-import view.CommandLineView;
 import view.View;
 import direction.Direction;
 import direction.DirectionFactory;
 
 public class Controller {
-	private View view;
-	private Grid grid;
-	
-	public Controller(int w, int h, View v) {
-		grid = new Grid(w, h);
+	private final View view;
+	private final Grid grid;
+
+	public Controller(int w, int h, Grid g, View v) {
+		grid = g;
 		view = v;
 		view.setController(this);
 	}
-	
+
 	public void gameLoop(){
 		while(true){
-			view.updateView(grid);
+			view.updateView();
 		}
 	}
 

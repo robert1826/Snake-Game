@@ -3,7 +3,6 @@ package Model;
 import java.awt.Point;
 
 import direction.Direction;
-import direction.DirectionFactory;
 
 public class Snake {
 	private Point body;
@@ -12,8 +11,7 @@ public class Snake {
 		body = new Point(startx, starty);
 	}
 	
-	public Point move(int direction){
-		Direction dir = DirectionFactory.getDirection(direction);
+	public Point move(Direction dir){
 		body.translate(dir.getDx(), dir.getDy());
 		return getBody();
 	}

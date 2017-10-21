@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import Model.Grid;
 import View.CommandLineView;
+import direction.Direction;
+import direction.DirectionFactory;
 
 public class CMDController {
 	private CommandLineView view;
@@ -20,9 +22,10 @@ public class CMDController {
 	public void gameLoop(){
 		while(true){
 			view.updateView(grid);
-			int direction = getInput();
+			int directionCode = getInput();
 			
-			Point newHead = grid.getSnake().move(direction);
+			Direction dir = DirectionFactory.getDirection(directionCode);
+			Point newHead = grid.getSnake().move(dir);
 			
 			if ( newHead.equals(grid.getMousePos()) )
 				grid.generateNewMouse();

@@ -32,11 +32,11 @@ public class Controller {
 		newHead.x = (newHead.x + grid.getHeight()) % grid.getHeight();
 		newHead.y = (newHead.y + grid.getWidth()) % grid.getWidth();
 
-
 		if ( newHead.equals(grid.getMousePos()) ){
 			grid.setSnakeHeadPos(newHead, false);
 			grid.generateNewMouse();
 
-		}else grid.setSnakeHeadPos(newHead, true);
+		} else if (grid.setSnakeHeadPos(newHead, true))
+				view.endGame();
 	}
 }

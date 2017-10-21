@@ -5,10 +5,10 @@ import java.awt.Point;
 import miscellaneous.GridConstants;
 
 public class Grid {
-	private Mouse mouse;
-	private Snake snake;
-	private int width, height;
-	
+	private final Mouse mouse;
+	private final Snake snake;
+	private final int width, height;
+
 	public Grid(int w, int h){
 		snake = new Snake(0, 0);
 		width = w;
@@ -24,27 +24,31 @@ public class Grid {
 	public int getHeight() {
 		return height;
 	}
-	
+
+	public Point getSnakeBody() {
+		return snake.getBody();
+	}
+
+	public void setSnakeHeadPos(Point newHead) {
+		snake.setHeadPos(newHead);
+	}
+
 	public int[][] getGrid(){
 		int[][] grid = new int[width][height];
 		Point snakeBody = snake.getBody();
-	
+
 		grid[snakeBody.x][snakeBody.y] = GridConstants.SNAKE_VIEW_CODE;
-		
+
 		Point mousePos = getMousePos();
 		grid[mousePos.x][mousePos.y] = GridConstants.MOUSE_VIEW_CODE;
-		
+
 		return grid;
 	}
 
-	public Snake getSnake() {
-		return this.snake;
-	}
-	
 	public Point getMousePos(){
 		return mouse.getPos();
 	}
-	
+
 	public void generateNewMouse(){
 		do {
 			mouse.renewPos(width, height);

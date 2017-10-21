@@ -1,7 +1,6 @@
 package Controller;
 
 import java.awt.Point;
-import java.util.Random;
 import java.util.Scanner;
 
 import Model.Grid;
@@ -11,7 +10,6 @@ import View.CommandLineView;
 public class CMDController {
 	private Snake snake;
 	private CommandLineView view;
-	private Random random;
 	private Scanner sc;
 	private Grid grid;
 	
@@ -19,7 +17,6 @@ public class CMDController {
 		snake = new Snake(0, 0);
 		grid = new Grid(snake, w, h);
 		view = new CommandLineView(grid);
-		random = new Random();
 		sc = new Scanner(System.in);
 	}
 	

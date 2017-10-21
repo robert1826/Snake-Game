@@ -24,6 +24,6 @@ public class Snake {
 	
 	@Override
 	public String toString() {
-		return String.format("(%d, %d)", body.x, body.y);
+		return String.format("Snake@(%d, %d)", body.x, body.y);
 	}
 }

@@ -48,6 +48,8 @@ public class Grid {
 	}
 	
 	public void generateNewMouse(){
-		mouse.renewPos(width, height);
+		do {
+			mouse.renewPos(width, height);
+		} while (snake.getBody().equals(mouse.getPos()));
 	}
 }

@@ -21,10 +21,9 @@ public class CMDController {
 		view = new CommandLineView(grid);
 		random = new Random();
 		sc = new Scanner(System.in);
-		gameLoop();
 	}
 	
-	void gameLoop(){
+	public void gameLoop(){
 		while(true){
 			view.updateView();
 			int direction = getInput();

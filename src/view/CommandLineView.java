@@ -1,9 +1,20 @@
 package view;
 
+import java.util.Scanner;
+
 import miscellaneous.GridConstants;
 import model.Grid;
+import controller.Controller;
 
 public class CommandLineView {		
+
+	private Scanner sc;
+	private Controller con;
+
+	public CommandLineView(Controller controller) {
+		sc = new Scanner(System.in);
+		con = controller;
+	}
 
 	public void updateView(Grid grid){
 		int[][] g = grid.getGrid();
@@ -26,5 +37,16 @@ public class CommandLineView {
 		}
 		
 		System.out.println();
+		con.moveSnake(getInput());
+	}
+
+	private int getInput() {
+		char s = sc.next().charAt(0);
+		while(s != 'u' && s != 'r' && s != 'd' && s != 'l'){
+			System.out.println("Please enter valid input :");
+			s = sc.next().charAt(0);
+		}
+
+		return "urdl".indexOf(s);
 	}
 }

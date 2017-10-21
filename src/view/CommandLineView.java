@@ -6,20 +6,28 @@ import miscellaneous.GridConstants;
 import model.Grid;
 import controller.Controller;
 
-public class CommandLineView implements View {
+public class CommandLineView extends View {
 
 	private final Scanner sc;
 	private Controller con;
 
-	public CommandLineView() {
+	public CommandLineView(Grid g) {
+		super(g);
 		sc = new Scanner(System.in);
 	}
 
+	@Override
 	public void setController(Controller controller) {
 		con = controller;
 	}
 
-	public void updateView(Grid grid){
+	@Override
+	public void updateView(){
+		if (grid == null){
+			System.err.println("No grid found when updating the view");
+			return;
+		}
+
 		int[][] g = grid.getGrid();
 
 		for(int i = 0; i < grid.getHeight(); i++){

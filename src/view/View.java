@@ -1,10 +1,15 @@
 package view;
 
-import controller.Controller;
 import model.Grid;
+import controller.Controller;
 
-public interface View {
-	
-	public void updateView(Grid grid);
-	public void setController(Controller controller);
+public abstract class View {
+	protected Grid grid;
+
+	public View(Grid g) {
+		this.grid = g;
+	}
+
+	public abstract void updateView();
+	public abstract void setController(Controller controller);
 }

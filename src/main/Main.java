@@ -1,6 +1,6 @@
-package Main;
+package main;
 
-import Controller.CMDController;
+import controller.CMDController;
 
 public class Main {
 	public static void main(String[] args){

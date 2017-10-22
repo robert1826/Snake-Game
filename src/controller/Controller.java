@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import model.Grid;
 import view.View;
+import view.ViewFactory;
 import direction.Direction;
 import direction.DirectionFactory;
 
@@ -13,10 +14,9 @@ public class Controller {
 	private int curDirectionCode;
 	private int prevDirectionCode;
 
-	public Controller(Grid g, View v) {
-		grid = g;
-		view = v;
-		view.setController(this);
+	public Controller(int gameWidth, int gameHeight, boolean isGuiView, boolean isViewAutoUpdated) {
+		grid = new Grid(gameWidth, gameHeight);
+		view = ViewFactory.getView(isGuiView, isViewAutoUpdated, grid, this);
 		curDirectionCode = Direction.Constants.RIGHT_DIRECTION;
 	}
 

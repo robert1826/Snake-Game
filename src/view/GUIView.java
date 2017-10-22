@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Grid;
+import controller.Controller;
 import direction.Direction;
 
 public class GUIView extends View implements KeyListener {
@@ -29,8 +30,8 @@ public class GUIView extends View implements KeyListener {
 	private static final Color MOUSE_COLOR = Color.red;
 	private static final Color BORDER_COLOR = Color.black;
 
-	public GUIView(Grid g) {
-		super(g);
+	public GUIView(Grid g, Controller c) {
+		super(g, c);
 		gameFrame = new JFrame();
 		labels = new JLabel[grid.getHeight()][grid.getWidth()];
 

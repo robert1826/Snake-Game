@@ -4,6 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import model.Grid;
+import controller.Controller;
 
 
 public class TimerGUIView extends GUIView {
@@ -19,8 +20,8 @@ public class TimerGUIView extends GUIView {
 		}
 	};
 
-	public TimerGUIView(Grid g) {
-		super(g);
+	public TimerGUIView(Grid g, Controller c) {
+		super(g, c);
 		autoUpdated = true;
 		timer = new Timer();
 		timer.schedule(task, 0, FRAME_UPDATE_INTERVAL);

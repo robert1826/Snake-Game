@@ -7,8 +7,6 @@ import model.Grid;
 
 
 public class TimerGUIView extends GUIView {
-	// TODO : handle the move snake at the end of the keypress listener
-	// 		  which causes the snake to go faster
 
 	private final int FRAME_UPDATE_INTERVAL = 350;
 	private final Timer timer;
@@ -23,6 +21,7 @@ public class TimerGUIView extends GUIView {
 
 	public TimerGUIView(Grid g) {
 		super(g);
+		autoUpdated = true;
 		timer = new Timer();
 		timer.schedule(task, 0, FRAME_UPDATE_INTERVAL);
 	}

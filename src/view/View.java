@@ -5,9 +5,11 @@ import controller.Controller;
 
 public abstract class View {
 	protected Grid grid;
+	protected boolean autoUpdated;
 
 	public View(Grid g) {
 		this.grid = g;
+		autoUpdated = false;
 	}
 
 	public abstract void updateView();

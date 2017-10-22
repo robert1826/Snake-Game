@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Grid;
-import controller.Controller;
 import direction.Direction;
 
 public class GUIView extends View implements KeyListener {
@@ -22,7 +21,6 @@ public class GUIView extends View implements KeyListener {
 	private static final String FRAME_TITLE = "Snake Game !";
 	private static final int LABEL_SIDE = 100;
 
-	protected Controller con;
 	private final JPanel contentPanel;
 	private final JLabel[][] labels;
 
@@ -63,11 +61,6 @@ public class GUIView extends View implements KeyListener {
 				}
 			}
 		}
-	}
-
-	@Override
-	public void setController(Controller controller) {
-		con = controller;
 	}
 
 	public void keyTyped(KeyEvent e) {

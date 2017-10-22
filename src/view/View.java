@@ -6,6 +6,7 @@ import controller.Controller;
 public abstract class View {
 	protected Grid grid;
 	protected boolean autoUpdated;
+	protected Controller con;
 
 	public View(Grid g) {
 		this.grid = g;
@@ -13,7 +14,10 @@ public abstract class View {
 	}
 
 	public abstract void updateView();
-	public abstract void setController(Controller controller);
+
+	public final void setController(Controller controller){
+		con = controller;
+	}
 
 	public void endGame() {
 		System.exit(0);

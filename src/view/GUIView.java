@@ -83,20 +83,22 @@ public class GUIView extends View implements KeyListener {
 
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			con.moveSnake(DirectionConstants.UP_DIRECTION);
+			con.setCurDirectionCode(DirectionConstants.UP_DIRECTION);
 			break;
 		case KeyEvent.VK_DOWN:
-			con.moveSnake(DirectionConstants.DOWN_DIRECTION);
+			con.setCurDirectionCode(DirectionConstants.DOWN_DIRECTION);
 			break;
 		case KeyEvent.VK_LEFT:
-			con.moveSnake(DirectionConstants.LEFT_DIRECTION);
+			con.setCurDirectionCode(DirectionConstants.LEFT_DIRECTION);
 			break;
 		case KeyEvent.VK_RIGHT:
-			con.moveSnake(DirectionConstants.RIGHT_DIRECTION);
+			con.setCurDirectionCode(DirectionConstants.RIGHT_DIRECTION);
 			break;
 		default:
 			break;
 		}
+
+		con.moveSnake();
 	}
 
 	public void keyReleased(KeyEvent e) {}

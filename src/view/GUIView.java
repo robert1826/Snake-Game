@@ -24,7 +24,7 @@ public class GUIView extends View implements KeyListener {
 	private static final String FRAME_TITLE = "Snake Game !";
 	private static final int LABEL_SIDE = 100;
 
-	private Controller con;
+	protected Controller con;
 	private final JPanel contentPanel;
 	private final JLabel[][] labels;
 

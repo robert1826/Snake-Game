@@ -3,8 +3,6 @@ package view;
 import java.util.Scanner;
 
 import model.Grid;
-import constants.GlobalGameConstants;
-import constants.GridConstants;
 import controller.Controller;
 
 public class CommandLineView extends View {
@@ -34,10 +32,10 @@ public class CommandLineView extends View {
 		for(int i = 0; i < grid.getHeight(); i++){
 			for(int j = 0; j < grid.getWidth(); j++){
 				switch (g[i][j]) {
-				case GridConstants.SNAKE_VIEW_CODE:
+				case Grid.Constants.SNAKE_VIEW_CODE:
 					System.out.print("#");
 					break;
-				case GridConstants.MOUSE_VIEW_CODE:
+				case Grid.Constants.MOUSE_VIEW_CODE:
 					System.out.print("^");
 					break;
 				default:
@@ -59,7 +57,7 @@ public class CommandLineView extends View {
 
 	@Override
 	public void endGame() {
-		System.out.println(GlobalGameConstants.GAME_EXITING_MSG);
+		System.out.println(View.Constants.GAME_EXITING_MSG);
 		super.endGame();
 	}
 

@@ -19,4 +19,20 @@ public abstract class Direction {
 
 	public abstract int getDx();
 	public abstract int getDy();
+
+	public static final boolean isOppositeDirection(int dirCode1, int dirCode2){
+		Direction dirA = DirectionFactory.getDirection(dirCode1);
+		Direction dirB = DirectionFactory.getDirection(dirCode2);
+		return isOppositeDirection(dirA, dirB);
+	}
+
+	public static final boolean isOppositeDirection(Direction dirA, Direction dirB){
+		if (dirA.getDx() == dirB.getDx())
+			return dirA.getDy() * dirB.getDy() == -1;
+
+		if (dirA.getDy() == dirB.getDy())
+			return dirA.getDx() * dirB.getDx() == -1;
+
+		return false;
+	}
 }

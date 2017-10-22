@@ -3,21 +3,14 @@ package view;
 import java.util.Scanner;
 
 import model.Grid;
-import controller.Controller;
 
 public class CommandLineView extends View {
 
 	private final Scanner sc;
-	private Controller con;
 
 	public CommandLineView(Grid g) {
 		super(g);
 		sc = new Scanner(System.in);
-	}
-
-	@Override
-	public void setController(Controller controller) {
-		con = controller;
 	}
 
 	@Override

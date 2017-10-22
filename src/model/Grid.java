@@ -3,8 +3,6 @@ package model;
 import java.awt.Point;
 import java.util.List;
 
-import constants.GridConstants;
-
 
 public class Grid {
 	private final Mouse mouse;
@@ -40,10 +38,10 @@ public class Grid {
 		List<Point> snakeBody = snake.getBody();
 
 		for (Point p : snakeBody)
-			grid[p.x][p.y] = GridConstants.SNAKE_VIEW_CODE;
+			grid[p.x][p.y] = Grid.Constants.SNAKE_VIEW_CODE;
 
 		Point mousePos = getMousePos();
-		grid[mousePos.x][mousePos.y] = GridConstants.MOUSE_VIEW_CODE;
+		grid[mousePos.x][mousePos.y] = Grid.Constants.MOUSE_VIEW_CODE;
 
 		return grid;
 	}
@@ -56,5 +54,11 @@ public class Grid {
 		do {
 			mouse.renewPos(width, height);
 		} while (snake.getBody().contains(mouse.getPos()));
+	}
+
+	public interface Constants {
+		public static final int EMPTY_VIEW_CODE = 0;
+		public static final int SNAKE_VIEW_CODE = 1;
+		public static final int MOUSE_VIEW_CODE = 2;
 	}
 }

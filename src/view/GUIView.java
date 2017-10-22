@@ -13,10 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Grid;
-import constants.DirectionConstants;
-import constants.GlobalGameConstants;
-import constants.GridConstants;
 import controller.Controller;
+import direction.Direction;
 
 public class GUIView extends View implements KeyListener {
 
@@ -53,10 +51,10 @@ public class GUIView extends View implements KeyListener {
 		for(int i = 0; i < grid.getHeight(); i++){
 			for(int j = 0; j < grid.getWidth(); j++){
 				switch (g[i][j]) {
-				case GridConstants.SNAKE_VIEW_CODE:
+				case Grid.Constants.SNAKE_VIEW_CODE:
 					labels[i][j].setBackground(SNAKE_COLOR);
 					break;
-				case GridConstants.MOUSE_VIEW_CODE:
+				case Grid.Constants.MOUSE_VIEW_CODE:
 					labels[i][j].setBackground(MOUSE_COLOR);
 					break;
 				default:
@@ -83,16 +81,16 @@ public class GUIView extends View implements KeyListener {
 
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
-			con.setCurDirectionCode(DirectionConstants.UP_DIRECTION);
+			con.setCurDirectionCode(Direction.Constants.UP_DIRECTION);
 			break;
 		case KeyEvent.VK_DOWN:
-			con.setCurDirectionCode(DirectionConstants.DOWN_DIRECTION);
+			con.setCurDirectionCode(Direction.Constants.DOWN_DIRECTION);
 			break;
 		case KeyEvent.VK_LEFT:
-			con.setCurDirectionCode(DirectionConstants.LEFT_DIRECTION);
+			con.setCurDirectionCode(Direction.Constants.LEFT_DIRECTION);
 			break;
 		case KeyEvent.VK_RIGHT:
-			con.setCurDirectionCode(DirectionConstants.RIGHT_DIRECTION);
+			con.setCurDirectionCode(Direction.Constants.RIGHT_DIRECTION);
 			break;
 		default:
 			break;
@@ -106,7 +104,7 @@ public class GUIView extends View implements KeyListener {
 
 	@Override
 	public void endGame() {
-		JOptionPane.showMessageDialog(null, GlobalGameConstants.GAME_EXITING_MSG);
+		JOptionPane.showMessageDialog(null, View.Constants.GAME_EXITING_MSG);
 		super.endGame();
 	}
 

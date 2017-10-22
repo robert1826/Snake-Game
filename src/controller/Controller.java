@@ -2,8 +2,6 @@ package controller;
 
 import java.awt.Point;
 
-import constants.DirectionConstants;
-
 import model.Grid;
 import view.View;
 import direction.Direction;
@@ -18,7 +16,7 @@ public class Controller {
 		grid = g;
 		view = v;
 		view.setController(this);
-		curDirectionCode = DirectionConstants.RIGHT_DIRECTION;
+		curDirectionCode = Direction.Constants.RIGHT_DIRECTION;
 	}
 
 	public void gameLoop(){

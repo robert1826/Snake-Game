@@ -18,4 +18,8 @@ public abstract class View {
 	public void endGame() {
 		System.exit(0);
 	}
+
+	interface Constants {
+		public static final String GAME_EXITING_MSG = "Snake has crashed into itself, exiting...";
+	}
 }

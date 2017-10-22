@@ -11,6 +11,7 @@ public class Controller {
 	private final View view;
 	private final Grid grid;
 	private int curDirectionCode;
+	private int prevDirectionCode;
 
 	public Controller(int w, int h, Grid g, View v) {
 		grid = g;
@@ -30,7 +31,11 @@ public class Controller {
 	}
 
 	public void moveSnake() {
+		if (Direction.isOppositeDirection(prevDirectionCode, curDirectionCode))
+			curDirectionCode = prevDirectionCode;
+
 		moveSnake(curDirectionCode);
+		prevDirectionCode = curDirectionCode;
 	}
 
 	private void moveSnake(int directionCode) {

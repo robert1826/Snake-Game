@@ -13,7 +13,7 @@ public class Controller {
 	private int curDirectionCode;
 	private int prevDirectionCode;
 
-	public Controller(int w, int h, Grid g, View v) {
+	public Controller(Grid g, View v) {
 		grid = g;
 		view = v;
 		view.setController(this);

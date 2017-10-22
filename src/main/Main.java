@@ -12,7 +12,7 @@ public class Main {
 
 		Grid grid = new Grid(game_width, game_height);
 		View view = new TimerGUIView(grid);
-		Controller controller = new Controller(game_width, game_height, grid, view);
+		Controller controller = new Controller(grid, view);
 		controller.gameLoop();
 	}
 }

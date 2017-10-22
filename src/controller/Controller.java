@@ -10,6 +10,7 @@ import direction.DirectionFactory;
 public class Controller {
 	private final View view;
 	private final Grid grid;
+	private int curDirectionCode;
 
 	public Controller(int w, int h, Grid g, View v) {
 		grid = g;
@@ -23,7 +24,15 @@ public class Controller {
 		}
 	}
 
-	public void moveSnake(int directionCode) {
+	public void setCurDirectionCode(int curDirCode){
+		curDirectionCode = curDirCode;
+	}
+
+	public void moveSnake() {
+		moveSnake(curDirectionCode);
+	}
+
+	private void moveSnake(int directionCode) {
 		Direction dir = DirectionFactory.getDirection(directionCode);
 
 		Point newHead = grid.getSnakeBody().get(0);

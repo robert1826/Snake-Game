@@ -1,4 +1,4 @@
-package miscellaneous;
+package constants;
 
 public interface DirectionConstants {
 	public static final int UP_DIRECTION = 0;

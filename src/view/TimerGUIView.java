@@ -8,7 +8,7 @@ import model.Grid;
 
 public class TimerGUIView extends GUIView {
 
-	private final int FRAME_UPDATE_INTERVAL = 350;
+	private final int FRAME_UPDATE_INTERVAL = 100;
 	private final Timer timer;
 	private final TimerTask task = new TimerTask() {
 		@Override

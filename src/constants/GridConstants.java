@@ -1,4 +1,4 @@
-package miscellaneous;
+package constants;
 
 public interface GridConstants {
 	public static final int EMPTY_VIEW_CODE = 0;

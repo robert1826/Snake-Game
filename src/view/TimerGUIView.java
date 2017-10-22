@@ -12,7 +12,9 @@ public class TimerGUIView extends GUIView {
 	private final TimerTask task = new TimerTask() {
 		@Override
 		public void run() {
-
+			if (con != null)
+				con.moveSnake();
+			updateView();
 		}
 	};
 

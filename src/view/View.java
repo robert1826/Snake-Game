@@ -8,16 +8,13 @@ public abstract class View {
 	protected boolean autoUpdated;
 	protected Controller con;
 
-	public View(Grid g) {
+	public View(Grid g, Controller c) {
 		this.grid = g;
+		this.con = c;
 		autoUpdated = false;
 	}
 
 	public abstract void updateView();
-
-	public final void setController(Controller controller){
-		con = controller;
-	}
 
 	public void endGame() {
 		System.exit(0);

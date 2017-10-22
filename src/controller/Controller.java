@@ -2,7 +2,8 @@ package controller;
 
 import java.awt.Point;
 
-import miscellaneous.DirectionConstants;
+import constants.DirectionConstants;
+
 import model.Grid;
 import view.View;
 import direction.Direction;

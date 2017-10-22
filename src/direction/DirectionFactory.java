@@ -1,6 +1,6 @@
 package direction;
 
-import miscellaneous.DirectionConstants;
+import constants.DirectionConstants;
 
 public class DirectionFactory {
 	private static final Direction up_direction = new UpDirection();

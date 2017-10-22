@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import miscellaneous.DirectionConstants;
-import miscellaneous.GlobalGameConstants;
-import miscellaneous.GridConstants;
 import model.Grid;
+import constants.DirectionConstants;
+import constants.GlobalGameConstants;
+import constants.GridConstants;
 import controller.Controller;
 
 public class GUIView extends View implements KeyListener {

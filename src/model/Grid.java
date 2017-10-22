@@ -3,7 +3,8 @@ package model;
 import java.awt.Point;
 import java.util.List;
 
-import miscellaneous.GridConstants;
+import constants.GridConstants;
+
 
 public class Grid {
 	private final Mouse mouse;

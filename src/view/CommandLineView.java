@@ -2,9 +2,9 @@ package view;
 
 import java.util.Scanner;
 
-import miscellaneous.GlobalGameConstants;
-import miscellaneous.GridConstants;
 import model.Grid;
+import constants.GlobalGameConstants;
+import constants.GridConstants;
 import controller.Controller;
 
 public class CommandLineView extends View {

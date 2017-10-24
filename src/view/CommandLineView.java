@@ -41,10 +41,6 @@ public class CommandLineView extends View {
 		}
 
 		System.out.println();
-
-		if (con != null)
-			con.setCurDirectionCode(getInput());
-		else System.err.println("No controller found to process input");
 	}
 
 	@Override

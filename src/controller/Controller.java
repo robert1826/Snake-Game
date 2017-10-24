@@ -1,6 +1,8 @@
 package controller;
 
 import java.awt.Point;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import model.Grid;
 import view.View;
@@ -12,14 +14,18 @@ import direction.Direction;
  * so when we need to instruct the model to update we should use the controller methods
  */
 public class Controller {
+
+	private static final long GAME_UPDATING_INTERVAL_MSEC = 200;
+
 	private final View view;
 	private final Grid grid;
 	private int curDirectionCode;
 	private int prevDirectionCode;
+	private Timer gameLoopTimer;
 
-	public Controller(int gameWidth, int gameHeight, boolean isGuiView, boolean isViewAutoUpdated) {
+	public Controller(int gameWidth, int gameHeight, boolean isGuiView) {
 		grid = new Grid(gameWidth, gameHeight);
-		view = ViewFactory.getView(isGuiView, isViewAutoUpdated, grid, this);
+		view = ViewFactory.getView(isGuiView, grid, this);
 
 		if (view == null)
 			throw new IllegalArgumentException("Arguments passed couldn't be used to create a view");
@@ -27,9 +33,20 @@ public class Controller {
 		curDirectionCode = Direction.Constants.RIGHT_DIRECTION;
 	}
 
-	public void gameLoop(){
-		while(true){
-			view.updateView();
+	public void startGame(){
+
+		TimerTask gameLoopTask = new TimerTask() {
+			@Override
+			public void run() {
+				moveSnake();
+				view.updateView();
+			}
+		};
+
+		// ensure scheduling once
+		if (gameLoopTimer == null) {
+			gameLoopTimer = new Timer();
+			gameLoopTimer.schedule(gameLoopTask, 0, GAME_UPDATING_INTERVAL_MSEC);
 		}
 	}
 

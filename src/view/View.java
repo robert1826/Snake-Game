@@ -8,13 +8,11 @@ import controller.Controller;
  */
 public abstract class View {
 	protected Grid grid;
-	protected boolean autoUpdated;
 	protected Controller con;
 
 	public View(Grid g, Controller c) {
 		this.grid = g;
 		this.con = c;
-		autoUpdated = false;
 	}
 
 	public abstract void updateView();

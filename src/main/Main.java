@@ -12,13 +12,13 @@ public class Main {
 
 		Controller controller = null;
 		try{
-			controller = new Controller(game_width, game_height, true, true);
+			controller = new Controller(game_width, game_height, true);
 		}catch(IllegalArgumentException ex){
 			System.err.println("Couldn't create game controller : " + ex.getMessage());
 			System.err.println("Ending game.");
 			System.exit(0);
 		}
 
-		controller.gameLoop();
+		controller.startGame();
 	}
 }

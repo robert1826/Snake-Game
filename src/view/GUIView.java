@@ -89,9 +89,6 @@ public class GUIView extends View implements KeyListener {
 		default:
 			break;
 		}
-
-		if (! autoUpdated)
-			con.moveSnake();
 	}
 
 	public void keyReleased(KeyEvent e) {}

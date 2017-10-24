@@ -10,7 +10,15 @@ public class Main {
 		int game_width = 10;
 		int game_height = 10;
 
-		Controller controller = new Controller(game_width, game_height, true, true);
+		Controller controller = null;
+		try{
+			controller = new Controller(game_width, game_height, true, true);
+		}catch(IllegalArgumentException ex){
+			System.err.println("Couldn't create game controller : " + ex.getMessage());
+			System.err.println("Ending game.");
+			System.exit(0);
+		}
+
 		controller.gameLoop();
 	}
 }

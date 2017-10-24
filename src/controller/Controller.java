@@ -18,9 +18,9 @@ public class Controller {
 	private int curDirectionCode;
 	private int prevDirectionCode;
 
-	public Controller(int gameWidth, int gameHeight, boolean isGuiView, boolean isViewAutoUpdated) {
+	public Controller(int gameWidth, int gameHeight, boolean isViewAutoUpdated) {
 		grid = new Grid(gameWidth, gameHeight);
-		view = ViewFactory.getView(isGuiView, isViewAutoUpdated, grid, this);
+		view = ViewFactory.getView(isViewAutoUpdated, grid, this);
 
 		if (view == null)
 			throw new IllegalArgumentException("Arguments passed couldn't be used to create a view");

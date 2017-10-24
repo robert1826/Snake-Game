@@ -8,13 +8,7 @@ import controller.Controller;
  */
 public class ViewFactory {
 
-	public static View getView(boolean isGui, boolean isAutoUpdated, Grid g, Controller c){
-		if (! isGui){
-			if (! isAutoUpdated)
-				return new CommandLineView(g, c);
-			else return null;
-		}
-
+	public static View getView(boolean isAutoUpdated, Grid g, Controller c){
 		return isAutoUpdated ? new TimerGUIView(g, c) : new GUIView(g, c);
 	}
 }

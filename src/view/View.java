@@ -19,9 +19,12 @@ public abstract class View {
 
 	public abstract void updateView();
 
-	public void endGame() {
+	protected abstract void displayGameEndingMessage();
+	public final void endGame() {
+		displayGameEndingMessage();
 		System.exit(0);
 	}
+
 
 	interface Constants {
 		public static final String GAME_EXITING_MSG = "Snake has crashed into itself, exiting...";

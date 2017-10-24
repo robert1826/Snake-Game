@@ -97,9 +97,8 @@ public class GUIView extends View implements KeyListener {
 	public void keyReleased(KeyEvent e) {}
 
 	@Override
-	public void endGame() {
+	protected void displayGameEndingMessage() {
 		JOptionPane.showMessageDialog(null, View.Constants.GAME_EXITING_MSG);
-		super.endGame();
 	}
 
 	private void createAndAddLabels() {

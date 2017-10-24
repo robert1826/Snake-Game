@@ -6,7 +6,6 @@ import model.Grid;
 import view.View;
 import view.ViewFactory;
 import direction.Direction;
-import direction.DirectionFactory;
 
 /**
  * This is the game controller, it should act as a facade for the whole game
@@ -47,7 +46,7 @@ public class Controller {
 	}
 
 	private void moveSnake(int directionCode) {
-		Direction dir = DirectionFactory.getDirection(directionCode);
+		Direction dir = Direction.getDirectionForCode(directionCode);
 
 		Point newHead = grid.getSnakeBody().get(0);
 		newHead.translate(dir.getDx(), dir.getDy());

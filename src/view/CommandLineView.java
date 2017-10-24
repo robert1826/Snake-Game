@@ -50,9 +50,8 @@ public class CommandLineView extends View {
 	}
 
 	@Override
-	public void endGame() {
+	protected void displayGameEndingMessage(){
 		System.out.println(View.Constants.GAME_EXITING_MSG);
-		super.endGame();
 	}
 
 	private int getInput() {

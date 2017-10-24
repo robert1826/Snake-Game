@@ -1,11 +1,12 @@
 package controller;
 
 import java.awt.Point;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import model.Grid;
+import player.CommandLineHumanPlayer;
+import player.Player;
 import view.View;
 import view.ViewFactory;
 import direction.Direction;
@@ -23,6 +24,7 @@ public class Controller {
 	private int curDirectionCode;
 	private int prevDirectionCode;
 	private Timer gameLoopTimer;
+	private final Player player;
 
 	public Controller(int gameWidth, int gameHeight, boolean isGuiView) {
 		grid = new Grid(gameWidth, gameHeight);
@@ -32,6 +34,7 @@ public class Controller {
 			throw new IllegalArgumentException("Arguments passed couldn't be used to create a view");
 
 		curDirectionCode = Direction.Constants.RIGHT_DIRECTION;
+		player = new CommandLineHumanPlayer();
 	}
 
 	public void startGame(){
@@ -40,7 +43,7 @@ public class Controller {
 			@Override
 			public void run() {
 				view.updateView();
-				setCurDirectionCode(CommandLineInputGetter.getInput());
+				setCurDirectionCode(player.getInputDirectionCode());
 				moveSnake();
 			}
 		};
@@ -79,19 +82,5 @@ public class Controller {
 
 		} else if (grid.setSnakeHeadPos(newHead, true))
 				view.endGame();
-	}
-
-	private static class CommandLineInputGetter{
-		private static final Scanner sc = new Scanner(System.in);
-
-		private static int getInput() {
-			char s = sc.next().charAt(0);
-			while(s != 'u' && s != 'r' && s != 'd' && s != 'l'){
-				System.out.println("Please enter valid input :");
-				s = sc.next().charAt(0);
-			}
-
-			return "urdl".indexOf(s);
-		}
 	}
 }

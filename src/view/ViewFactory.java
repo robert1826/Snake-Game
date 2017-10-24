@@ -3,6 +3,9 @@ package view;
 import model.Grid;
 import controller.Controller;
 
+/**
+ * Factory to create a view for the game using some parameters
+ */
 public class ViewFactory {
 
 	public static View getView(boolean isGui, boolean isAutoUpdated, Grid g, Controller c){

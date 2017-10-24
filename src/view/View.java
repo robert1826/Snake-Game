@@ -3,6 +3,9 @@ package view;
 import model.Grid;
 import controller.Controller;
 
+/**
+ * Parent for any view used in this game
+ */
 public abstract class View {
 	protected Grid grid;
 	protected boolean autoUpdated;

@@ -12,7 +12,7 @@ public class Main {
 
 		Controller controller = null;
 		try{
-			controller = new Controller(game_width, game_height, true);
+			controller = new Controller(game_width, game_height, false);
 		}catch(IllegalArgumentException ex){
 			System.err.println("Couldn't create game controller : " + ex.getMessage());
 			System.err.println("Ending game.");

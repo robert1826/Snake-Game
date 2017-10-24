@@ -2,6 +2,9 @@ package main;
 
 import controller.Controller;
 
+/**
+ * Starting point of the whole game
+ */
 public class Main {
 	public static void main(String[] args){
 		int game_width = 10;

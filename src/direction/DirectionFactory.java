@@ -1,6 +1,8 @@
 package direction;
 
-
+/**
+ * This is the class we should use to get a direction
+ */
 public class DirectionFactory {
 	private static final Direction up_direction = new UpDirection();
 	private static final Direction down_direction = new DownDirection();

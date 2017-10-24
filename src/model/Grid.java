@@ -3,7 +3,9 @@ package model;
 import java.awt.Point;
 import java.util.List;
 
-
+/**
+ * Encapsulates the whole game "model" so any interaction with the model should be through that class
+ */
 public class Grid {
 	private final Mouse mouse;
 	private final Snake snake;

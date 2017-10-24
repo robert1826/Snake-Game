@@ -8,6 +8,10 @@ import view.ViewFactory;
 import direction.Direction;
 import direction.DirectionFactory;
 
+/**
+ * This is the game controller, it should act as a facade for the whole game
+ * so when we need to instruct the model to update we should use the controller methods
+ */
 public class Controller {
 	private final View view;
 	private final Grid grid;

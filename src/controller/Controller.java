@@ -21,6 +21,10 @@ public class Controller {
 	public Controller(int gameWidth, int gameHeight, boolean isGuiView, boolean isViewAutoUpdated) {
 		grid = new Grid(gameWidth, gameHeight);
 		view = ViewFactory.getView(isGuiView, isViewAutoUpdated, grid, this);
+
+		if (view == null)
+			throw new IllegalArgumentException("Arguments passed couldn't be used to create a view");
+
 		curDirectionCode = Direction.Constants.RIGHT_DIRECTION;
 	}
 

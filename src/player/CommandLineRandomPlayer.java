@@ -14,4 +14,9 @@ public class CommandLineRandomPlayer extends Player {
 	public int getInputDirectionCode() {
 		return random.nextInt(4);
 	}
+
+	@Override
+	protected boolean getIsGuiPlayer() {
+		return false;
+	}
 }

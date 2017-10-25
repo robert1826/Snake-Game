@@ -23,4 +23,9 @@ public class CommandLineHumanPlayer extends Player {
 			return "urdl".indexOf(s);
 		}
 	}
+
+	@Override
+	protected boolean getIsGuiPlayer() {
+		return false;
+	}
 }

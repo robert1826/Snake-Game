@@ -1,17 +1,12 @@
 package view;
 
-import java.util.Scanner;
-
 import model.Grid;
 import controller.Controller;
 
 public class CommandLineView extends View {
 
-	private final Scanner sc;
-
 	public CommandLineView(Grid g, Controller c) {
 		super(g, c);
-		sc = new Scanner(System.in);
 	}
 
 	@Override
@@ -46,15 +41,5 @@ public class CommandLineView extends View {
 	@Override
 	protected void displayGameEndingMessage(){
 		System.out.println(View.Constants.GAME_EXITING_MSG);
-	}
-
-	private int getInput() {
-		char s = sc.next().charAt(0);
-		while(s != 'u' && s != 'r' && s != 'd' && s != 'l'){
-			System.out.println("Please enter valid input :");
-			s = sc.next().charAt(0);
-		}
-
-		return "urdl".indexOf(s);
 	}
 }

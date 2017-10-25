@@ -54,6 +54,10 @@ public class Controller {
 		}
 	}
 
+	public int getCurDirectionCode(){
+		return curDirectionCode;
+	}
+
 	public void setCurDirectionCode(int curDirCode){
 		curDirectionCode = curDirCode;
 	}

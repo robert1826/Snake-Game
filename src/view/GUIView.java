@@ -3,8 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -14,9 +12,8 @@ import javax.swing.JPanel;
 
 import model.Grid;
 import controller.Controller;
-import direction.Direction;
 
-public class GUIView extends View implements KeyListener {
+public class GUIView extends View {
 
 	private final JFrame gameFrame;
 	private static final String FRAME_TITLE = "Snake Game !";
@@ -64,35 +61,6 @@ public class GUIView extends View implements KeyListener {
 		}
 	}
 
-	public void keyTyped(KeyEvent e) {
-	}
-
-	public void keyPressed(KeyEvent e) {
-		if (this.con == null){
-			System.err.println("No controller found to process input");
-			return;
-		}
-
-		switch (e.getKeyCode()) {
-		case KeyEvent.VK_UP:
-			con.setCurDirectionCode(Direction.Constants.UP_DIRECTION);
-			break;
-		case KeyEvent.VK_DOWN:
-			con.setCurDirectionCode(Direction.Constants.DOWN_DIRECTION);
-			break;
-		case KeyEvent.VK_LEFT:
-			con.setCurDirectionCode(Direction.Constants.LEFT_DIRECTION);
-			break;
-		case KeyEvent.VK_RIGHT:
-			con.setCurDirectionCode(Direction.Constants.RIGHT_DIRECTION);
-			break;
-		default:
-			break;
-		}
-	}
-
-	public void keyReleased(KeyEvent e) {}
-
 	@Override
 	protected void displayGameEndingMessage() {
 		JOptionPane.showMessageDialog(null, View.Constants.GAME_EXITING_MSG);
@@ -115,7 +83,6 @@ public class GUIView extends View implements KeyListener {
 	private void setupAndShowFrame() {
 		gameFrame.setContentPane(contentPanel);
 		gameFrame.setTitle(FRAME_TITLE);
-		gameFrame.addKeyListener(this);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.pack();
 		gameFrame.setLocationRelativeTo(null);

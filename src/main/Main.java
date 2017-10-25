@@ -1,6 +1,6 @@
 package main;
 
-import player.CommandLineHumanPlayer;
+import player.GuiRandomPlayer;
 import player.Player;
 
 /**
@@ -8,6 +8,6 @@ import player.Player;
  */
 public class Main {
 	public static void main(String[] args){
-		Player player = new CommandLineHumanPlayer();
+		Player player = new GuiRandomPlayer();
 	}
 }

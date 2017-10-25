@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -39,6 +40,10 @@ public class GUIView extends View {
 		setupAndShowFrame();
 	}
 
+	@Override
+	public void addKeyListener(KeyListener listener) {
+		gameFrame.addKeyListener(listener);
+	}
 
 	@Override
 	public void updateView() {

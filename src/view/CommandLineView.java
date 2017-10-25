@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.event.KeyListener;
+
 import model.Grid;
 import controller.Controller;
 
@@ -7,6 +9,11 @@ public class CommandLineView extends View {
 
 	public CommandLineView(Grid g, Controller c) {
 		super(g, c);
+	}
+
+	@Override
+	public void addKeyListener(KeyListener listener) {
+
 	}
 
 	@Override

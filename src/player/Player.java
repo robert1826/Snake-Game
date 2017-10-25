@@ -13,7 +13,7 @@ public abstract class Player {
 	private static final int GAME_WIDTH = 10;
 	private static final int GAME_HEIGHT = 10;
 
-	private Controller gameController;
+	protected Controller gameController;
 
 	public Player(){
 
@@ -25,7 +25,12 @@ public abstract class Player {
 			System.exit(0);
 		}
 
+		addListenersToView();
 		gameController.startGame();
+	}
+
+	protected void addListenersToView() {
+
 	}
 
 	protected abstract boolean getIsGuiPlayer();

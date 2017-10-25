@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Point;
+import java.awt.event.KeyListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -52,6 +53,10 @@ public class Controller {
 			gameLoopTimer = new Timer();
 			gameLoopTimer.schedule(gameLoopTask, 0, GAME_UPDATING_INTERVAL_MSEC);
 		}
+	}
+
+	public void addKeyListenerToView(KeyListener guiHumanPlayer) {
+		view.addKeyListener(guiHumanPlayer);
 	}
 
 	public int getCurDirectionCode(){

@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.event.KeyListener;
+
 import model.Grid;
 import controller.Controller;
 
@@ -17,7 +19,10 @@ public abstract class View {
 
 	public abstract void updateView();
 
+	public abstract void addKeyListener(KeyListener listener);
+
 	protected abstract void displayGameEndingMessage();
+
 	public final void endGame() {
 		displayGameEndingMessage();
 		System.exit(0);

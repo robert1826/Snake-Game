@@ -1,5 +1,6 @@
 package main;
 
+import player.CommandLineHumanPlayer;
 import controller.Controller;
 
 /**
@@ -12,7 +13,7 @@ public class Main {
 
 		Controller controller = null;
 		try{
-			controller = new Controller(game_width, game_height, false);
+			controller = new Controller(new CommandLineHumanPlayer(), game_width, game_height, false);
 		}catch(IllegalArgumentException ex){
 			System.err.println("Couldn't create game controller : " + ex.getMessage());
 			System.err.println("Ending game.");

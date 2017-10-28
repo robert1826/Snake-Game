@@ -57,6 +57,7 @@ public class GUIView extends View {
 		gameFrame.setTitle(FRAME_TITLE);
 		gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameFrame.pack();
+		gameFrame.setResizable(false);
 		gameFrame.setLocationRelativeTo(null);
 		gameFrame.setVisible(true);
 		gameFrame.requestFocus();

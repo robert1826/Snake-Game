@@ -29,9 +29,9 @@ public class Controller {
 	private Timer gameLoopTimer;
 	private final Player gamePlayer;
 
-	public Controller(Player player, int gameWidth, int gameHeight, boolean isGuiView) {
+	public Controller(Player player, int gameWidth, int gameHeight, boolean isActiveView, boolean isGuiView) {
 		grid = new Grid(gameWidth, gameHeight);
-		view = ViewFactory.getView(isGuiView, grid, this);
+		view = ViewFactory.getView(isActiveView, isGuiView, grid, this);
 
 		if (view == null)
 			throw new IllegalArgumentException("Arguments passed couldn't be used to create a view");

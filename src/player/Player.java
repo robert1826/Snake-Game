@@ -23,7 +23,7 @@ public abstract class Player {
 	protected void createGame(){
 
 		try{
-			gameController = new Controller(this, GAME_WIDTH, GAME_HEIGHT, getIsGuiPlayer());
+			gameController = new Controller(this, GAME_WIDTH, GAME_HEIGHT, getIsActiveView(), getIsGuiPlayer());
 		}catch(IllegalArgumentException ex){
 			System.err.println("Can't create a controller for the game : " + ex.getMessage());
 			System.err.println("Ending game.");
@@ -32,6 +32,7 @@ public abstract class Player {
 
 		addListenersToView();
 	}
+
 
 	protected void startGame() {
 		gameController.startGame();
@@ -46,6 +47,11 @@ public abstract class Player {
 	}
 
 	protected abstract boolean getIsGuiPlayer();
+
+	protected boolean getIsActiveView(){
+		// players can override and change this behavior but its true by default
+		return true;
+	}
 
 	public abstract int getInputDirectionCode();
 }

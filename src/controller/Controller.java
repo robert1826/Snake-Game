@@ -89,10 +89,12 @@ public class Controller {
 			grid.generateNewMouse();
 
 		} else if (grid.setSnakeHeadPos(newHead, true))
-				view.endGame();
+				endGame();
 	}
 
 	public void endGame() {
+		gameLoopTimer.cancel();
+		view.endGame();
 		gamePlayer.endGame();
 	}
 }

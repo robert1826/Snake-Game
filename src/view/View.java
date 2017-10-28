@@ -25,7 +25,6 @@ public abstract class View {
 
 	public final void endGame() {
 		displayGameEndingMessage();
-		con.endGame();
 	}
 
 

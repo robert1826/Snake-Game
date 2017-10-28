@@ -69,6 +69,7 @@ public class GUIView extends View {
 	@Override
 	protected void displayGameEndingMessage() {
 		JOptionPane.showMessageDialog(null, View.Constants.GAME_EXITING_MSG);
+		gameFrame.dispose();
 	}
 
 	private void createAndAddLabels() {

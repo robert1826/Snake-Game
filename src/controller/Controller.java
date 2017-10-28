@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Point;
 import java.awt.event.KeyListener;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -16,9 +17,6 @@ import direction.Direction;
  * so when we need to instruct the model to update we should use the controller methods
  */
 public class Controller {
-
-	private static final int EATING_MOUSE_EVENT = 1;
-	private static final int SNAKE_CRASHING_EVENT = 2;
 
 	private static final long GAME_UPDATING_INTERVAL_MSEC = 200;
 
@@ -49,7 +47,7 @@ public class Controller {
 				setCurDirectionCode(gamePlayer.getInputDirectionCode());
 				int event = moveSnake();
 
-				if (event == SNAKE_CRASHING_EVENT)
+				if (event == GameEventsConstants.SNAKE_CRASHING_EVENT)
 					endGame();
 			}
 		};
@@ -71,6 +69,14 @@ public class Controller {
 
 	public void setCurDirectionCode(int curDirCode){
 		curDirectionCode = curDirCode;
+	}
+
+	public Point getMousePos() {
+		return grid.getMousePos();
+	}
+
+	public List<Point> getSnakeBody() {
+		return grid.getSnakeBody();
 	}
 
 	public int moveSnake() {
@@ -95,10 +101,10 @@ public class Controller {
 		if ( newHead.equals(grid.getMousePos()) ){
 			grid.setSnakeHeadPos(newHead, false);
 			grid.generateNewMouse();
-			event = EATING_MOUSE_EVENT;
+			event = GameEventsConstants.EATING_MOUSE_EVENT;
 
 		} else if (grid.setSnakeHeadPos(newHead, true))
-			event = SNAKE_CRASHING_EVENT;
+			event = GameEventsConstants.SNAKE_CRASHING_EVENT;
 
 		return event;
 	}
@@ -107,5 +113,10 @@ public class Controller {
 		gameLoopTimer.cancel();
 		view.endGame();
 		gamePlayer.endGame();
+	}
+
+	public interface GameEventsConstants{
+		public static final int EATING_MOUSE_EVENT = 1;
+		public static final int SNAKE_CRASHING_EVENT = 2;
 	}
 }

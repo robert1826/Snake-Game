@@ -19,7 +19,7 @@ import direction.Direction;
  */
 public class Controller {
 
-	private static final long GAME_UPDATING_INTERVAL_MSEC = 200;
+	private static final long GAME_UPDATING_INTERVAL_MSEC = 1;
 
 	private final View view;
 	private final Grid grid;

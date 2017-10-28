@@ -38,7 +38,7 @@ public class QlearningPlayer extends Player {
 
 	@Override
 	protected boolean getIsActiveView() {
-		return true;
+		return false;
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Grid;
@@ -48,7 +47,7 @@ public class GUIView extends View {
 
 	@Override
 	protected void displayGameEndingMessage() {
-		JOptionPane.showMessageDialog(null, View.Constants.GAME_EXITING_MSG);
+//		JOptionPane.showMessageDialog(null, View.Constants.GAME_EXITING_MSG);
 		gameFrame.dispose();
 	}
 

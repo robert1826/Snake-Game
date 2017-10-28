@@ -10,8 +10,8 @@ import controller.Controller;
  */
 public abstract class Player {
 
-	private static final int GAME_WIDTH = 10;
-	private static final int GAME_HEIGHT = 10;
+	private static final int GAME_WIDTH = 4;
+	private static final int GAME_HEIGHT = 4;
 
 	protected Controller gameController;
 

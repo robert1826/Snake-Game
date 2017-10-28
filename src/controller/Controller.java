@@ -91,4 +91,8 @@ public class Controller {
 		} else if (grid.setSnakeHeadPos(newHead, true))
 				view.endGame();
 	}
+
+	public void endGame() {
+		gamePlayer.endGame();
+	}
 }

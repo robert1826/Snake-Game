@@ -29,6 +29,10 @@ public abstract class Player {
 		gameController.startGame();
 	}
 
+	public void endGame() {
+		System.exit(0);
+	}
+
 	protected void addListenersToView() {
 
 	}

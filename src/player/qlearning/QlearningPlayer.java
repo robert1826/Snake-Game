@@ -1,22 +1,21 @@
-package player;
+package player.qlearning;
 
-import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Random;
 
+import player.Player;
 import controller.Controller;
 
-public class QlearningPlayer extends Player implements Serializable {
+public class QlearningPlayer extends Player {
 
-	private static final boolean TRAINING_SETUP = true;
+	private static final boolean TRAINING_SETUP = false;
 
 	private static final double learningRate = 0.1;
 	private static final double discountFactor = 0.9;
@@ -25,7 +24,7 @@ public class QlearningPlayer extends Player implements Serializable {
 	private static final int MAX_RUNS = 900;
 
 	private HashMap<QlearningMapKey, Double> qTable;
-	private State curState;
+	private QlearningState curState;
 	private BitSet exploringBitset;
 
 	private int maxScore;
@@ -37,13 +36,13 @@ public class QlearningPlayer extends Player implements Serializable {
 			Controller.GAME_UPDATING_INTERVAL_MSEC = 1;
 
 		super.createGame();
-		curState = new State(gameController);
+		curState = new QlearningState(gameController);
 
 		if (! TRAINING_SETUP)
 			loadQTable();
 
 		else if (qTable == null) {
-			qTable = new HashMap<QlearningPlayer.QlearningMapKey, Double>();
+			qTable = new HashMap<QlearningMapKey, Double>();
 			exploringBitset = new BitSet();
 			exploringBitset.set(0, (int) (exploreProbability * 100), true);
 		}
@@ -70,13 +69,13 @@ public class QlearningPlayer extends Player implements Serializable {
 		Double bestValue = null;
 		ArrayList<Integer> bestActions = new ArrayList<Integer>();
 		for (QlearningMapKey key : qTable.keySet())
-			if (key.state.equals(curState))
+			if (key.getState().equals(curState))
 				if (bestValue == null || (bestValue < qTable.get(key))){
 					bestValue = qTable.get(key);
 					bestActions.clear();
-					bestActions.add(key.action);
+					bestActions.add(key.getAction());
 				}else if (Math.abs(bestValue - qTable.get(key)) < 0.1)
-					bestActions.add(key.action);
+					bestActions.add(key.getAction());
 
 		if (! bestActions.isEmpty())
 			return bestActions.get(rand.nextInt(bestActions.size()));
@@ -94,7 +93,7 @@ public class QlearningPlayer extends Player implements Serializable {
 		return rand.nextInt(4);
 	}
 
-	public void learn(int event, State nextState){
+	public void learn(int event, QlearningState nextState){
 		double reward = (event == Controller.GameEventsConstants.SNAKE_CRASHING_EVENT) ? -100 : event;
 
 		int curDirectionCode = gameController.getCurDirectionCode();
@@ -114,15 +113,15 @@ public class QlearningPlayer extends Player implements Serializable {
 		qTable.put(curKey, nextQValue);
 
 		System.out.println("learned for state : "
-				+ curKey.state.snakeHead + " "
-				+ curKey.state.mousePos + " "
-				+ curKey.action);
+				+ curKey.getState().getSnakeHead() + " "
+				+ curKey.getState().getMousePos() + " "
+				+ curKey.getAction());
 
 		printInfo();
 	}
 
 	public void updateCurState() {
-		curState = new State(gameController);
+		curState = new QlearningState(gameController);
 	}
 
 	@Override
@@ -161,7 +160,7 @@ public class QlearningPlayer extends Player implements Serializable {
 			InputStream in = new FileInputStream("map.save");
 			ObjectInputStream objInput = new ObjectInputStream(in);
 
-			qTable = (HashMap<QlearningPlayer.QlearningMapKey, Double>) objInput.readObject();
+			qTable = (HashMap<QlearningMapKey, Double>) objInput.readObject();
 
 			objInput.close();
 			in.close();
@@ -181,57 +180,5 @@ public class QlearningPlayer extends Player implements Serializable {
 		System.out.println("MAX Score : " + maxScore);
 		System.out.println("# States  : " + qTable.size());
 		System.out.println("");
-	}
-
-	private class QlearningMapKey implements Serializable {
-
-		private final State state;
-		private final int action;
-
-		QlearningMapKey(State state, int action){
-			this.state = state;
-			this.action = action;
-		}
-
-		@Override
-		public int hashCode() {
-			return state.hashCode() + 97 * (action + 1);
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (! (obj instanceof QlearningMapKey))
-				return false;
-
-			QlearningMapKey other = (QlearningMapKey) obj;
-			return state.equals(other.state)
-					&& action == other.action;
-		}
-	}
-
-	public static class State implements Serializable {
-
-		private final Point mousePos;
-		private final Point snakeHead;
-
-		public State(Controller con) {
-			this.mousePos = con.getMousePos();
-			this.snakeHead = con.getSnakeBody().get(0);
-		}
-
-		@Override
-		public int hashCode() {
-			return mousePos.hashCode() + 31 * snakeHead.hashCode();
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (! (obj instanceof State))
-				return false;
-
-			State other = (State) obj;
-			return mousePos.equals(other.mousePos)
-					&& snakeHead.equals(other.snakeHead);
-		}
 	}
 }

@@ -1,7 +1,7 @@
 package main;
 
 import player.Player;
-import player.QlearningPlayer;
+import player.qlearning.QlearningPlayer;
 
 /**
  * Starting point of the whole game

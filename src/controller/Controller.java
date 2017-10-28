@@ -8,7 +8,8 @@ import java.util.TimerTask;
 
 import model.Grid;
 import player.Player;
-import player.QlearningPlayer;
+import player.qlearning.QlearningPlayer;
+import player.qlearning.QlearningState;
 import view.View;
 import view.ViewFactory;
 import direction.Direction;
@@ -52,7 +53,7 @@ public class Controller {
 					QlearningPlayer qPlayer = (QlearningPlayer) gamePlayer;
 					Point snakeHead = grid.getSnakeBody().get(0);
 					Point mousePos = grid.getMousePos();
-					QlearningPlayer.State nextState = new QlearningPlayer.State(Controller.this);
+					QlearningState nextState = new QlearningState(Controller.this);
 					qPlayer.learn(event, nextState);
 
 					qPlayer.updateCurState();

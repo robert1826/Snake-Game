@@ -19,6 +19,8 @@ public class QlearningPlayer extends Player {
 	private State curState;
 	private BitSet exploringBitset;
 
+	private int maxScore;
+
 	@Override
 	protected void createGame() {
 		super.createGame();
@@ -91,6 +93,13 @@ public class QlearningPlayer extends Player {
 				+ learningRate * (reward + discountFactor * maxNextValue);
 
 		qTable.put(curKey, nextQValue);
+
+		System.out.println("learned for state : "
+				+ curKey.state.snakeHead + " "
+				+ curKey.state.mousePos + " "
+				+ curKey.action);
+
+		printInfo();
 	}
 
 	public void updateCurState() {
@@ -101,6 +110,16 @@ public class QlearningPlayer extends Player {
 	public void endGame() {
 		createGame();
 		startGame();
+	}
+
+	private void printInfo() {
+		int curScore = gameController.getSnakeBody().size();
+		maxScore = Math.max(maxScore, curScore);
+
+		System.out.println("Score     : " + curScore);
+		System.out.println("MAX Score : " + maxScore);
+		System.out.println("# States  : " + qTable.size());
+		System.out.println("");
 	}
 
 	private class QlearningMapKey {

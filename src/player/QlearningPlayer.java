@@ -1,6 +1,12 @@
 package player;
 
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -8,25 +14,35 @@ import java.util.Random;
 
 import controller.Controller;
 
-public class QlearningPlayer extends Player {
+public class QlearningPlayer extends Player implements Serializable {
+
+	private static final boolean TRAINING_SETUP = true;
 
 	private static final double learningRate = 0.1;
 	private static final double discountFactor = 0.9;
 	private static final Random rand = new Random();
 	private static final double exploreProbability = 0.1;
+	private static final int MAX_RUNS = 900;
 
 	private HashMap<QlearningMapKey, Double> qTable;
 	private State curState;
 	private BitSet exploringBitset;
 
 	private int maxScore;
+	private int runs;
 
 	@Override
 	protected void createGame() {
+		if (TRAINING_SETUP)
+			Controller.GAME_UPDATING_INTERVAL_MSEC = 1;
+
 		super.createGame();
 		curState = new State(gameController);
 
-		if (qTable == null) {
+		if (! TRAINING_SETUP)
+			loadQTable();
+
+		else if (qTable == null) {
 			qTable = new HashMap<QlearningPlayer.QlearningMapKey, Double>();
 			exploringBitset = new BitSet();
 			exploringBitset.set(0, (int) (exploreProbability * 100), true);
@@ -40,7 +56,7 @@ public class QlearningPlayer extends Player {
 
 	@Override
 	protected boolean getIsActiveView() {
-		return false;
+		return ! TRAINING_SETUP;
 	}
 
 	@Override
@@ -68,6 +84,9 @@ public class QlearningPlayer extends Player {
 	}
 
 	private Integer getResultIfAllowedExploreOrNull() {
+		if (! TRAINING_SETUP)
+			return null;
+
 		boolean allowedToExplore = exploringBitset.get(rand.nextInt(100));
 		if (! allowedToExplore)
 			return null;
@@ -108,21 +127,63 @@ public class QlearningPlayer extends Player {
 
 	@Override
 	public void endGame() {
-		createGame();
-		startGame();
+
+		runs++;
+		if (TRAINING_SETUP) {
+			if (runs > MAX_RUNS) {
+				saveQTable();
+				System.exit(0);
+			}
+
+			createGame();
+			startGame();
+		}else
+			System.exit(0);
+	}
+
+	private void saveQTable(){
+		try {
+			FileOutputStream fileOutput = new FileOutputStream("map.save");
+			ObjectOutputStream objOutput = new ObjectOutputStream(fileOutput);
+
+			objOutput.writeObject(qTable);
+
+			objOutput.close();
+			fileOutput.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void loadQTable() {
+		try {
+			InputStream in = new FileInputStream("map.save");
+			ObjectInputStream objInput = new ObjectInputStream(in);
+
+			qTable = (HashMap<QlearningPlayer.QlearningMapKey, Double>) objInput.readObject();
+
+			objInput.close();
+			in.close();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void printInfo() {
 		int curScore = gameController.getSnakeBody().size();
 		maxScore = Math.max(maxScore, curScore);
 
+		System.out.println("run       : " + runs);
 		System.out.println("Score     : " + curScore);
 		System.out.println("MAX Score : " + maxScore);
 		System.out.println("# States  : " + qTable.size());
 		System.out.println("");
 	}
 
-	private class QlearningMapKey {
+	private class QlearningMapKey implements Serializable {
 
 		private final State state;
 		private final int action;
@@ -148,7 +209,7 @@ public class QlearningPlayer extends Player {
 		}
 	}
 
-	public static class State {
+	public static class State implements Serializable {
 
 		private final Point mousePos;
 		private final Point snakeHead;

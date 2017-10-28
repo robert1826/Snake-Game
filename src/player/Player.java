@@ -16,6 +16,11 @@ public abstract class Player {
 	protected Controller gameController;
 
 	public Player(){
+		createGame();
+		startGame();
+	}
+
+	protected void createGame(){
 
 		try{
 			gameController = new Controller(this, GAME_WIDTH, GAME_HEIGHT, getIsGuiPlayer());
@@ -26,6 +31,9 @@ public abstract class Player {
 		}
 
 		addListenersToView();
+	}
+
+	protected void startGame() {
 		gameController.startGame();
 	}
 

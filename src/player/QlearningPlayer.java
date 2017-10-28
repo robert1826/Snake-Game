@@ -93,6 +93,9 @@ public class QlearningPlayer extends Player {
 		qTable.put(curKey, nextQValue);
 	}
 
+	public void updateCurState() {
+		curState = new State(gameController);
+	}
 
 	@Override
 	public void endGame() {

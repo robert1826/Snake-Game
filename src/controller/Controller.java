@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import model.Grid;
 import player.Player;
+import player.QlearningPlayer;
 import view.View;
 import view.ViewFactory;
 import direction.Direction;
@@ -46,6 +47,16 @@ public class Controller {
 				view.updateView();
 				setCurDirectionCode(gamePlayer.getInputDirectionCode());
 				int event = moveSnake();
+
+				if (gamePlayer instanceof QlearningPlayer){
+					QlearningPlayer qPlayer = (QlearningPlayer) gamePlayer;
+					Point snakeHead = grid.getSnakeBody().get(0);
+					Point mousePos = grid.getMousePos();
+					QlearningPlayer.State nextState = new QlearningPlayer.State(Controller.this);
+					qPlayer.learn(event, nextState);
+
+					qPlayer.updateCurState();
+				}
 
 				if (event == GameEventsConstants.SNAKE_CRASHING_EVENT)
 					endGame();

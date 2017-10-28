@@ -14,16 +14,16 @@ import controller.Controller;
 
 public class GUIView extends View {
 
+	public static final int CELL_SIDE = 100;
+	public static final String FRAME_TITLE = "Snake Game !";
+
+	public static final Color SNAKE_COLOR = Color.blue;
+	public static final Color BACKGROUND_COLOR = Color.gray;
+	public static final Color MOUSE_COLOR = Color.red;
+	public static final Color BORDER_COLOR = Color.black;
+
 	private final JFrame gameFrame;
-	private static final String FRAME_TITLE = "Snake Game !";
-	private static final int CELL_SIDE = 100;
-
 	private final GameContentGuiView contentPanel;
-
-	private static final Color SNAKE_COLOR = Color.blue;
-	private static final Color BACKGROUND_COLOR = Color.gray;
-	private static final Color MOUSE_COLOR = Color.red;
-	private static final Color BORDER_COLOR = Color.black;
 
 	public GUIView(Grid g, Controller c) {
 		super(g, c);

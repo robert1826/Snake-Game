@@ -11,6 +11,6 @@ public class ViewFactory {
 	public static View getView(boolean isActiveView, boolean isGui, Grid g, Controller c){
 		if (!isActiveView)
 			return new NullView(g, c);
-		return isGui ? new GUIView(g, c) : new CommandLineView(g, c);
+		return isGui ? new JavaFxView(g, c) : new CommandLineView(g, c);
 	}
 }
